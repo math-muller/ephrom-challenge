@@ -24,10 +24,16 @@ abstract class HttpClient {
 class HttpClientSpy extends Mock implements HttpClient {}
 
 void main() {
+  HttpClientSpy httpClient;
+  String url;
+  RemoteLoadPosts sut;
+
+  setUp(() {
+    httpClient = HttpClientSpy();
+    url = faker.internet.httpUrl();
+    sut = RemoteLoadPosts(httpClient: httpClient, url: url);
+  });
   test('Should call HttpClient with correct values', () async {
-    final httpClient = HttpClientSpy();
-    final url = faker.internet.httpUrl();
-    final sut = RemoteLoadPosts(httpClient: httpClient, url: url);
     await sut.load();
 
     verify(httpClient.request(url: url, method: 'get'));
