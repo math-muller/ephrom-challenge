@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class ResultEntity {
-  final String id;
+class PostsViewModel extends Equatable {
+ final String id;
   final String codigo;
   final int respostas;
   final String dataHora;
@@ -12,7 +13,20 @@ class ResultEntity {
   final String texto;
   final int versao;
 
-  ResultEntity({
+  List get props => [
+        id,
+        codigo,
+        respostas,
+        dataHora,
+        estaLido,
+        autorId,
+        autorNome,
+        autorImageUrl,
+        texto,
+        versao,
+      ];
+
+  PostsViewModel({
     @required this.id,
     @required this.codigo,
     @required this.respostas,
